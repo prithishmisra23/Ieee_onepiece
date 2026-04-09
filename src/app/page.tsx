@@ -1,5 +1,4 @@
 "use client";
-import IntroSplash from "../components/IntroSplash";
 import Cursor from "../components/Cursor";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";

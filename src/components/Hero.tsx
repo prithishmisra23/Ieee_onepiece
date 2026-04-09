@@ -39,6 +39,7 @@ export default function Hero() {
           width: "100%",
           height: "100vh",
           objectFit: "cover",
+          objectPosition: "center 20%", // Adjusts crop to keep the man fully visible
           zIndex: 10,
         }}
       >
