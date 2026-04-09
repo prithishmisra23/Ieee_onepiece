@@ -1,6 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 
+const NAV_ITEMS = [
+  ["posters",  "Posters"],
+  ["features", "Powers"],
+  ["sponsors", "Partners"],
+  ["join",     "Register"],
+];
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -23,61 +30,78 @@ export default function Nav() {
           position: "fixed",
           top: 0, left: 0, right: 0,
           zIndex: 1000,
-          padding: "1rem 2rem",
+          padding: "0.9rem 2rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          transition: "all 0.4s",
-          background: scrolled ? "rgba(6,11,21,0.92)" : "transparent",
-          backdropFilter: scrolled ? "blur(14px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,215,0,0.15)" : "none",
+          transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
+          background: scrolled ? "rgba(3,9,18,0.92)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(232,195,58,0.1)" : "none",
         }}
       >
+        {/* Logo / Brand */}
         <div
           style={{
-            fontFamily: "'Pirata One', cursive",
-            fontSize: "1.6rem",
-            color: "var(--gold)",
-            letterSpacing: "2px",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.6rem",
             cursor: "none",
           }}
           onClick={() => scrollTo("hero")}
         >
-          ☠ GRAND LINE
+          <span style={{ fontSize: "1.4rem", filter: "drop-shadow(0 0 8px rgba(232,195,58,0.5))" }}>
+            ☠
+          </span>
+          <div style={{ lineHeight: 1.1 }}>
+            <div
+              style={{
+                fontFamily: "'Pirata One', cursive",
+                fontSize: "1.25rem",
+                color: "var(--gold)",
+                letterSpacing: "1px",
+              }}
+            >
+              IEEE EVENTS
+            </div>
+            <div
+              style={{
+                fontFamily: "'Cinzel', serif",
+                fontSize: "0.55rem",
+                color: "var(--teal)",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+              }}
+            >
+              The Grand Line
+            </div>
+          </div>
         </div>
 
         {/* Desktop links */}
         <ul
-          style={{
-            display: "flex",
-            gap: "2rem",
-            listStyle: "none",
-            margin: 0,
-          }}
+          style={{ display: "flex", gap: "2rem", listStyle: "none", margin: 0 }}
           className="hidden md:flex"
         >
-          {[
-            ["story", "Story"],
-            ["features", "Powers"],
-            ["leaderboard", "Rankings"],
-            ["map-section", "Schedule"],
-          ].map(([id, label]) => (
+          {NAV_ITEMS.map(([id, label]) => (
             <li key={id}>
               <button
                 onClick={() => scrollTo(id)}
                 style={{
                   background: "none",
                   border: "none",
-                  color: "rgba(255,255,255,0.7)",
-                  fontSize: "0.85rem",
-                  letterSpacing: "2px",
+                  color: "rgba(248,248,248,0.6)",
+                  fontSize: "0.72rem",
+                  letterSpacing: "3px",
                   textTransform: "uppercase",
                   cursor: "none",
                   transition: "color 0.3s",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Cinzel', serif",
+                  fontWeight: 400,
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248,248,248,0.6)")}
               >
                 {label}
               </button>
@@ -88,7 +112,7 @@ export default function Nav() {
         <button
           className="btn-primary hidden md:inline-flex"
           onClick={() => scrollTo("join")}
-          style={{ fontSize: "1rem", padding: "0.6rem 1.4rem" }}
+          style={{ fontSize: "0.75rem", padding: "0.55rem 1.3rem", letterSpacing: "3px" }}
         >
           JOIN CREW
         </button>
@@ -107,7 +131,7 @@ export default function Nav() {
             padding: "0.5rem",
           }}
         >
-          {[0, 1, 2].map(i => (
+          {[0, 1, 2].map((i) => (
             <span
               key={i}
               style={{
@@ -134,24 +158,20 @@ export default function Nav() {
       {/* Mobile menu */}
       {open && (
         <div className="nav-mobile-menu md:hidden">
-          {[
-            ["story", "Story"],
-            ["features", "Powers"],
-            ["leaderboard", "Rankings"],
-            ["map-section", "Schedule"],
-          ].map(([id, label]) => (
+          {NAV_ITEMS.map(([id, label]) => (
             <button
               key={id}
               onClick={() => scrollTo(id)}
               style={{
                 background: "none",
                 border: "none",
-                color: "rgba(255,255,255,0.8)",
-                fontSize: "1.2rem",
-                fontFamily: "'Bebas Neue', cursive",
+                color: "rgba(248,248,248,0.8)",
+                fontSize: "1.1rem",
+                fontFamily: "'Cinzel', serif",
                 letterSpacing: "3px",
                 cursor: "none",
                 textAlign: "left",
+                textTransform: "uppercase",
               }}
             >
               {label}

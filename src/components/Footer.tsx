@@ -44,9 +44,9 @@ export default function Footer() {
               marginBottom: "0.75rem",
             }}
           >
-            ☠ GRAND LINE
+            ☠ IEEE EVENTS
           </div>
-          <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.75, maxWidth: "26ch" }}>
+          <p style={{ fontSize: "0.83rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.8, maxWidth: "28ch" }}>
             An IEEE Initiative.<br />Pirate Spirit. Real Innovation.<br />Set sail and find your One Piece.
           </p>
           {/* Social icons */}
@@ -197,7 +197,7 @@ export default function Footer() {
           fontStyle: "italic",
         }}
       >
-        © 2025 Grand Line Event. All rights reserved. Eiichiro Oda would be proud. ⚓
+        © 2025 IEEE Events — The Grand Line. All rights reserved. ⚓
       </div>
 
       <style>{`

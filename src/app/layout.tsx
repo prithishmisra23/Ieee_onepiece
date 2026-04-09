@@ -2,38 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Grand Line Event — Pitch. Compete. Conquer. | IEEE",
+  title: "IEEE Events — The Grand Line | Pitch. Compete. Conquer.",
   description:
-    "Grand Line Event — the One Piece–themed live event platform where pirates compete, pitch ideas, and conquer the sea. An IEEE Initiative.",
-  keywords: ["IEEE", "One Piece", "Grand Line", "hackathon", "pitch event"],
+    "IEEE Events: The Grand Line — a One Piece–themed innovation event where pirates pitch ideas, compete for Berries, and conquer the seas. An IEEE Initiative.",
+  keywords: ["IEEE", "IEEE Events", "One Piece", "Grand Line", "hackathon", "pitch event", "startup", "innovation"],
   openGraph: {
-    title: "Grand Line Event",
-    description: "Pitch. Compete. Conquer. An IEEE Initiative.",
+    title: "IEEE Events — The Grand Line",
+    description: "Pitch. Compete. Conquer. Set Sail on the Grand Line.",
     type: "website",
   },
 };
-
-const OBSERVER_SCRIPT = `
-(function(){
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting) e.target.classList.add('visible');
-    });
-  },{threshold:0.12});
-  function init(){
-    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){obs.observe(el);});
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
-  else init();
-  var mo = new MutationObserver(function(){
-    document.querySelectorAll('.reveal:not([data-obs]),.reveal-left:not([data-obs]),.reveal-right:not([data-obs])').forEach(function(el){
-      el.setAttribute('data-obs','1');
-      obs.observe(el);
-    });
-  });
-  mo.observe(document.body,{childList:true,subtree:true});
-})();
-`;
 
 export default function RootLayout({
   children,
@@ -44,7 +22,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <script dangerouslySetInnerHTML={{ __html: OBSERVER_SCRIPT }} />
       </body>
     </html>
   );

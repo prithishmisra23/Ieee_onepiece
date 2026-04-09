@@ -1,11 +1,11 @@
 "use client";
+import IntroSplash from "../components/IntroSplash";
 import Cursor from "../components/Cursor";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
-import Story from "../components/Story";
-import Features from "../components/Features";
-import Leaderboard from "../components/Leaderboard";
-import MapRoute from "../components/MapRoute";
+import Posters from "../components/Posters";
+import EventHighlights from "../components/EventHighlights";
+import Sponsors from "../components/Sponsors";
 import JoinCrew from "../components/JoinCrew";
 import Footer from "../components/Footer";
 
@@ -15,10 +15,9 @@ export default function Home() {
       <Cursor />
       <Nav />
       <Hero />
-      <Story />
-      <Features />
-      <Leaderboard />
-      <MapRoute />
+      <Posters />
+      <EventHighlights />
+      <Sponsors />
       <JoinCrew />
       <Footer />
     </>

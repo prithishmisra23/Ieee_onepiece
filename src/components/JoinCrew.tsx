@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function JoinCrew() {
   const [seats, setSeats] = useState(147);
@@ -36,304 +37,417 @@ export default function JoinCrew() {
 
   return (
     <>
-      <section id="join" style={{ background: "var(--navy)" }}>
+      <section id="join" style={{ background: "#020610", position: "relative", overflow: "hidden" }}>
+        
+        {/* Parallax background effects */}
+        <div style={{ position: "absolute", top: "20%", right: "-10%", width: "40vw", height: "40vw", background: "radial-gradient(circle, rgba(217,48,48,0.05) 0%, transparent 60%)", filter: "blur(60px)", pointerEvents: "none" }} />
+        
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            minHeight: "75vh",
+            minHeight: "80vh",
+            position: "relative",
+            zIndex: 1,
+            borderTop: "1px solid rgba(255,255,255,0.03)"
           }}
           className="join-grid"
         >
-          {/* LEFT */}
+          {/* LEFT: Copy */}
           <div
             style={{
-              background: "linear-gradient(135deg, var(--navy) 60%, #0d1830)",
-              padding: "5rem 4rem",
+              padding: "6rem 5rem",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               position: "relative",
-              overflow: "hidden",
             }}
           >
             {/* Watermark jolly roger */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: -100 }}
+              whileInView={{ opacity: 0.02, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
               style={{
                 position: "absolute",
-                right: "-60px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                opacity: 0.04,
-                fontSize: "18rem",
+                left: "-50px",
+                top: "30%",
+                fontSize: "25rem",
                 lineHeight: 1,
                 pointerEvents: "none",
                 userSelect: "none",
+                transformOrigin: "center right",
               }}
             >
               ☠
-            </div>
+            </motion.div>
 
-            <div className="reveal-left">
-              <span className="section-tag">Limited Berths</span>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Cinzel', serif",
+                  fontSize: "0.75rem",
+                  color: "#D93030",
+                  letterSpacing: "6px",
+                  textTransform: "uppercase",
+                  display: "block",
+                  marginBottom: "1rem",
+                }}
+              >
+                Limited Berths
+              </span>
               <h2
                 style={{
                   fontFamily: "'Pirata One', cursive",
-                  fontSize: "clamp(2rem,4.5vw,3.5rem)",
-                  color: "var(--gold)",
+                  fontSize: "clamp(3rem,5vw,4.5rem)",
+                  color: "#E8C33A",
                   lineHeight: 1.1,
                   marginBottom: "1.5rem",
+                  textShadow: "0 0 40px rgba(232,195,58,0.2)",
                 }}
               >
-                ARE YOU WORTHY OF THE GRAND LINE?
+                ARE YOU WORTHY OF IEEE EVENTS?
               </h2>
-              <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "2rem", maxWidth: "42ch" }}>
-                Only true pirates make it this far. Register now before all berths are taken. This isn&apos;t just an event — it&apos;s your shot at the One Piece.
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.65)",
+                  lineHeight: 1.8,
+                  marginBottom: "2.5rem",
+                  maxWidth: "42ch",
+                  fontSize: "1.05rem",
+                }}
+              >
+                Only true innovators make it this far. Register now before all berths are taken. This isn&apos;t just an event — it&apos;s your shot at the One Piece.
               </p>
-              <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)", marginBottom: "1.5rem", letterSpacing: "1px" }}>
-                Limited to 200 pirates per event
-              </p>
+
               <div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                  <span style={{ fontSize: "0.8rem", color: "var(--red)", fontWeight: 600, letterSpacing: "1px" }}>
-                    🔴 {seats} SPOTS LEFT
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.8rem", alignItems: "center" }}>
+                  <span
+                    style={{
+                      fontFamily: "'Bebas Neue', cursive",
+                      fontSize: "1.4rem",
+                      color: "#FF4D4D",
+                      letterSpacing: "3px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem"
+                    }}
+                  >
+                    <span style={{ width: 8, height: 8, background: "#FF4D4D", borderRadius: "50%", animation: "pulseDot 1.5s infinite" }} />
+                    {seats} SPOTS LEFT
                   </span>
-                  <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)" }}>
+                  <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', monospace", letterSpacing: "2px" }}>
                     {seats} / 200
                   </span>
                 </div>
                 <div
                   style={{
-                    height: "8px",
-                    background: "rgba(255,255,255,0.08)",
-                    borderRadius: "4px",
+                    height: "6px",
+                    background: "rgba(255,255,255,0.05)",
+                    borderRadius: "3px",
                     overflow: "hidden",
+                    position: "relative",
                   }}
                 >
-                  <div
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${pct}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
                     style={{
                       height: "100%",
-                      width: `${pct}%`,
-                      background: "linear-gradient(90deg, var(--red), #ff3333)",
-                      borderRadius: "4px",
-                      transition: "width 1s ease",
+                      background: "linear-gradient(90deg, #A81B1B, #FF4D4D)",
+                      borderRadius: "3px",
+                      position: "relative",
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    <div className="progress-shimmer" />
+                  </motion.div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* RIGHT — Wanted Poster Form */}
+          {/* RIGHT: Form */}
           <div
             style={{
-              background: "linear-gradient(135deg, #1a0505, #0d0202)",
+              background: "linear-gradient(135deg, rgba(16,5,5,0.5), rgba(5,2,2,0.8))",
+              borderLeft: "1px solid rgba(255,255,255,0.03)",
               padding: "4rem 3rem",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <div
-              className="reveal-right"
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotate: 2 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                background: "var(--cream)",
-                border: "5px solid #8B6914",
-                padding: "2.5rem 2rem",
-                maxWidth: "400px",
+                background: "#FAF3E0",
+                padding: "3rem 2.5rem",
+                maxWidth: "420px",
                 width: "100%",
                 position: "relative",
                 borderRadius: "2px",
-                boxShadow: "8px 8px 0 rgba(0,0,0,0.6), 0 0 60px rgba(204,0,0,0.15)",
+                boxShadow: "0 20px 50px rgba(0,0,0,0.8), 0 0 0 8px rgba(139,105,20,0.2)",
+                backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png')",
+                backgroundBlendMode: "overlay",
               }}
+              className="premium-poster-form"
             >
-              {/* Corner decorations */}
-              <div style={{ position: "absolute", top: 6, left: 6, width: 14, height: 14, borderTop: "2px solid #8B6914", borderLeft: "2px solid #8B6914" }} />
-              <div style={{ position: "absolute", top: 6, right: 6, width: 14, height: 14, borderTop: "2px solid #8B6914", borderRight: "2px solid #8B6914" }} />
-              <div style={{ position: "absolute", bottom: 6, left: 6, width: 14, height: 14, borderBottom: "2px solid #8B6914", borderLeft: "2px solid #8B6914" }} />
-              <div style={{ position: "absolute", bottom: 6, right: 6, width: 14, height: 14, borderBottom: "2px solid #8B6914", borderRight: "2px solid #8B6914" }} />
+              <div style={{ position: "absolute", top: 8, left: 8, width: 20, height: 20, borderTop: "3px solid #8B6914", borderLeft: "3px solid #8B6914" }} />
+              <div style={{ position: "absolute", top: 8, right: 8, width: 20, height: 20, borderTop: "3px solid #8B6914", borderRight: "3px solid #8B6914" }} />
+              <div style={{ position: "absolute", bottom: 8, left: 8, width: 20, height: 20, borderBottom: "3px solid #8B6914", borderLeft: "3px solid #8B6914" }} />
+              <div style={{ position: "absolute", bottom: 8, right: 8, width: 20, height: 20, borderBottom: "3px solid #8B6914", borderRight: "3px solid #8B6914" }} />
 
               <h3
                 style={{
                   fontFamily: "'Pirata One', cursive",
-                  fontSize: "1.6rem",
+                  fontSize: "2rem",
                   color: "#8B0000",
                   textAlign: "center",
-                  borderBottom: "2px solid #8B6914",
-                  paddingBottom: "0.8rem",
-                  marginBottom: "1.5rem",
+                  borderBottom: "2px solid rgba(139,105,20,0.3)",
+                  paddingBottom: "1.2rem",
+                  marginBottom: "2rem",
+                  letterSpacing: "2px",
                 }}
               >
                 ⚔ WANTED: YOUR SKILLS ⚔
               </h3>
 
-              {[
-                { id: "f-name", label: "Pirate Name", type: "text", placeholder: "e.g. Monkey D. Hacker", err: errors.name },
-                { id: "f-email", label: "Email", type: "email", placeholder: "pirate@seas.com", err: errors.email },
-                { id: "f-crew", label: "Crew / College", type: "text", placeholder: "Straw Hat Gang / MIT", err: errors.crew },
-              ].map(({ id, label, type, placeholder, err }) => (
-                <div key={id}>
-                  <label className="wf-label">{label}</label>
-                  <input id={id} type={type} placeholder={placeholder} className="wf-input" />
-                  {err && <div className="wf-error">{err}</div>}
-                </div>
-              ))}
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                {[
+                  { id: "f-name", label: "Pirate Name", type: "text", placeholder: "e.g. Monkey D. Hacker", err: errors.name },
+                  { id: "f-email", label: "Email", type: "email", placeholder: "pirate@seas.com", err: errors.email },
+                  { id: "f-crew", label: "Crew / College", type: "text", placeholder: "Straw Hat Gang / MIT", err: errors.crew },
+                ].map(({ id, label, type, placeholder, err }) => (
+                  <div key={id}>
+                    <label className="wf-label-new">{label}</label>
+                    <input id={id} type={type} placeholder={placeholder} className="wf-input-new" />
+                    {err && <motion.div initial={{ opacity:0, height:0 }} animate={{ opacity:1, height:"auto" }} className="wf-error-new">{err}</motion.div>}
+                  </div>
+                ))}
 
-              <div>
-                <label className="wf-label">Bounty Class</label>
-                <select id="f-bounty" className="wf-select">
-                  <option value="">Choose your rank...</option>
-                  <option>Rookie</option>
-                  <option>Super Rookie</option>
-                  <option>Warlord</option>
-                  <option>Yonko</option>
-                </select>
-                {errors.bounty && <div className="wf-error">{errors.bounty}</div>}
+                <div>
+                  <label className="wf-label-new">Bounty Class</label>
+                  <select id="f-bounty" className="wf-select-new">
+                    <option value="">Choose your rank...</option>
+                    <option>Rookie</option>
+                    <option>Super Rookie</option>
+                    <option>Warlord</option>
+                    <option>Yonko</option>
+                  </select>
+                  {errors.bounty && <motion.div initial={{ opacity:0, height:0 }} animate={{ opacity:1, height:"auto" }} className="wf-error-new">{errors.bounty}</motion.div>}
+                </div>
               </div>
 
               <button
                 onClick={validate}
-                style={{
-                  width: "100%",
-                  marginTop: "1.5rem",
-                  padding: "1rem",
-                  background: "var(--red)",
-                  color: "#fff",
-                  border: "none",
-                  fontFamily: "'Bebas Neue', cursive",
-                  fontSize: "1.5rem",
-                  letterSpacing: "4px",
-                  cursor: "none",
-                  borderRadius: "2px",
-                  transition: "all 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#aa0000";
-                  e.currentTarget.style.transform = "scale(1.02)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "var(--red)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
+                className="wanted-submit-btn"
               >
                 🏴‍☠️ SET SAIL
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Bounty overlay */}
+      {/* Bounty Overlay - Refined */}
       {showOverlay && (
-        <div className="bounty-overlay" onClick={() => setShowOverlay(false)}>
-          <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="bounty-overlay-premium"
+          onClick={() => setShowOverlay(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.8, y: 50, rotateX: 10 }}
+            animate={{ scale: 1, y: 0, rotateX: 0 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15 }}
             style={{
-              background: "var(--cream)",
-              border: "6px solid #8B6914",
-              padding: "2.5rem 2rem",
-              maxWidth: "360px",
+              background: "#FAF3E0",
+              border: "8px solid #8B6914",
+              padding: "3rem 2rem",
+              maxWidth: "400px",
               width: "90%",
               textAlign: "center",
               position: "relative",
-              borderRadius: "2px",
-              boxShadow: "0 0 100px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
-              animation: "posterIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both",
+              borderRadius: "4px",
+              boxShadow: "0 40px 100px rgba(0,0,0,0.8), 0 0 60px rgba(255,215,0,0.15)",
+              backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png')",
+              backgroundBlendMode: "overlay",
             }}
             onClick={(e) => e.stopPropagation()}
           >
             <div
               style={{
                 position: "absolute",
-                top: 14, right: 14,
+                top: 20, right: -15,
                 color: "#CC0000",
-                border: "3px solid #CC0000",
+                border: "4px solid #CC0000",
                 fontFamily: "'Bebas Neue', cursive",
-                fontSize: "1rem",
-                padding: "4px 10px",
+                fontSize: "1.4rem",
+                padding: "4px 15px",
                 transform: "rotate(15deg)",
-                letterSpacing: "3px",
+                letterSpacing: "4px",
+                background: "#FAF3E0",
+                boxShadow: "2px 2px 0 rgba(0,0,0,0.1)",
               }}
             >
               ISSUED
             </div>
-            <div
-              style={{
-                fontFamily: "'Pirata One', cursive",
-                fontSize: "1.2rem",
-                color: "#8B0000",
-                letterSpacing: "4px",
-                marginBottom: "0.5rem",
-              }}
-            >
+            
+            <div style={{ fontFamily: "'Pirata One', cursive", fontSize: "1.5rem", color: "#8B0000", letterSpacing: "5px", marginBottom: "0.2rem" }}>
               ☠ WANTED ☠
             </div>
-            <div style={{ fontSize: "0.72rem", color: "#888", letterSpacing: "2px", marginBottom: "0.8rem" }}>
+            <div style={{ fontSize: "0.8rem", color: "#555", letterSpacing: "3px", marginBottom: "1.5rem", fontFamily: "'Cinzel', serif" }}>
               DEAD OR ALIVE
             </div>
+            
             <div
               style={{
-                width: "120px",
-                height: "120px",
+                width: "140px",
+                height: "140px",
                 borderRadius: "50%",
-                background: "linear-gradient(135deg,#2a2a2a,#555)",
-                margin: "0 auto 1rem",
+                background: "linear-gradient(135deg, #1f2025, #353842)",
+                margin: "0 auto 1.5rem",
                 border: "4px solid #8B6914",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "4rem",
+                boxShadow: "inset 0 0 20px rgba(0,0,0,0.8), 0 10px 20px rgba(0,0,0,0.3)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "4.5rem",
               }}
             >
               🏴‍☠️
             </div>
-            <div
-              style={{
-                fontFamily: "'Pirata One', cursive",
-                fontSize: "1.8rem",
-                color: "#333",
-                marginBottom: "0.5rem",
-              }}
-            >
+            
+            <div style={{ fontFamily: "'Pirata One', cursive", fontSize: "2.4rem", color: "#111", marginBottom: "0.5rem" }}>
               {pirateNameInPoster}
             </div>
-            <div
-              style={{
-                fontFamily: "'Bebas Neue', cursive",
-                fontSize: "1.1rem",
-                color: "#8B0000",
-                letterSpacing: "2px",
-              }}
-            >
+            
+            <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "1.4rem", color: "#8B0000", letterSpacing: "3px" }}>
               BOUNTY: 100,000,000 ฿
             </div>
-            <div style={{ fontSize: "0.72rem", color: "#888", marginTop: "0.5rem" }}>
-              Registered for the Grand Line Event
+            
+            <div style={{ fontSize: "0.75rem", color: "#777", marginTop: "1rem", fontFamily: "'Inter', sans-serif" }}>
+              Registered for IEEE Events — The Grand Line
             </div>
+            
             <button
               onClick={() => setShowOverlay(false)}
               style={{
-                marginTop: "1.5rem",
+                marginTop: "2rem",
                 background: "none",
                 border: "none",
-                color: "rgba(0,0,0,0.4)",
-                fontSize: "0.85rem",
-                cursor: "none",
+                color: "#8B0000",
+                fontSize: "0.9rem",
+                cursor: "pointer",
                 textDecoration: "underline",
+                fontFamily: "'Cinzel', serif",
+                letterSpacing: "1px",
               }}
             >
               Close and continue →
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
 
       <style>{`
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
           .join-grid { grid-template-columns: 1fr !important; }
         }
-        @keyframes posterIn {
-          from { transform: scale(0.7) rotate(-5deg); opacity: 0; }
-          to { transform: scale(1) rotate(0deg); opacity: 1; }
+
+        .wf-label-new {
+          font-family: 'Cinzel', serif;
+          font-size: 0.75rem;
+          color: #5a3e00;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 700;
+        }
+
+        .wf-input-new, .wf-select-new {
+          width: 100%;
+          padding: 0.8rem 1rem;
+          border: 2px solid rgba(139,105,20,0.3);
+          background: rgba(255,255,255,0.5);
+          color: #333;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.95rem;
+          border-radius: 4px;
+          outline: none;
+          transition: all 0.3s;
+        }
+
+        .wf-input-new:focus, .wf-select-new:focus {
+          border-color: #8B0000;
+          background: #FFF;
+          box-shadow: 0 0 15px rgba(139,0,0,0.1);
+        }
+
+        .wf-error-new {
+          font-size: 0.8rem;
+          color: #D93030;
+          margin-top: 0.4rem;
+          font-style: italic;
+          overflow: hidden;
+        }
+
+        .wanted-submit-btn {
+          width: 100%;
+          margin-top: 2rem;
+          padding: 1.2rem;
+          background: linear-gradient(135deg, #A81B1B, #730F0F);
+          color: #fff;
+          border: 1px solid #D93030;
+          font-family: "'Bebas Neue', cursive";
+          font-size: 1.8rem;
+          letter-spacing: 5px;
+          cursor: pointer;
+          border-radius: 4px;
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+          box-shadow: 0 10px 20px rgba(139,0,0,0.3);
+        }
+
+        .wanted-submit-btn:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(139,0,0,0.5);
+          background: linear-gradient(135deg, #B52626, #8B0000);
+        }
+
+        .bounty-overlay-premium {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          background: rgba(2,6,16,0.95);
+          backdrop-filter: blur(10px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+
+        .progress-shimmer {
+          position: absolute;
+          top: 0; left: 0; bottom: 0; width: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+          transform: skewX(-20deg) translateX(-150%);
+          animation: progressShimmer 3s infinite 1s;
+        }
+
+        @keyframes progressShimmer {
+          100% { transform: skewX(-20deg) translateX(150%); }
         }
       `}</style>
     </>
