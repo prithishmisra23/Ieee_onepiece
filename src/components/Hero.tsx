@@ -23,6 +23,7 @@ export default function Hero() {
         justifyContent: "center",
         overflow: "hidden",
         backgroundColor: "#020610",
+        zIndex: 1, // Establish stacking context
       }}
     >
       {/* LAYER 1: BACKGROUND VIDEO */}
@@ -38,7 +39,7 @@ export default function Hero() {
           width: "100%",
           height: "100vh",
           objectFit: "cover",
-          zIndex: -1,
+          zIndex: 10,
         }}
       >
         <source src="/intro-video.mp4" type="video/mp4" />
@@ -55,7 +56,7 @@ export default function Hero() {
           height: "100%",
           backgroundColor: "rgba(0, 0, 0, 0.45)",
           backgroundImage: "linear-gradient(to bottom, rgba(2,6,16,0.6) 0%, rgba(2,6,16,0.2) 30%, rgba(2,6,16,0.7) 80%, #020610 100%)",
-          zIndex: 0,
+          zIndex: 20,
           pointerEvents: "none",
         }}
       />
@@ -65,7 +66,7 @@ export default function Hero() {
         <div
           style={{
             position: "relative",
-            zIndex: 1,
+            zIndex: 30,
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
@@ -163,7 +164,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       {show && (
-        <div className="scroll-indicator">
+        <div className="scroll-indicator" style={{ zIndex: 40 }}>
           <div className="scroll-pill">
             <div className="scroll-dot" />
           </div>
