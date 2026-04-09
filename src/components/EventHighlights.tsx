@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const ITEMS = [
   { icon: "🎙", title: "LIVE PITCHING", desc: "Real-time pitch rooms. Your voice, your idea, your shot at glory.", color: "#00C4D8" },
@@ -10,7 +10,7 @@ const ITEMS = [
   { icon: "🐌", title: "REAL-TIME CHAT", desc: "Den Den Mushi comms. React, hype, roast. Every room buzzing.", color: "#D93030" },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -18,9 +18,9 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 export default function EventHighlights() {
